@@ -1,15 +1,20 @@
 sikkerhet:
 x -sikre mot sql injection med <?>
--kryptere passord for sql i JS
+x -kryptere passord for sql i JS
 -lage backup av filene en gang hver dag, (crontab windows?)
 x -bruker med nødvendige rettigheter: bob 3 select insert update delete 
 
 
 JS:
 x -funksjon, legge til 1, fjerne 1, vis liste
--fikse at legg till går for navn og pris, så den ikke stacker feil
+x -fikse at legg till går for navn og pris, så den ikke stacker feil
 -
 
 annet:
 -script.js localhost, ip hvis noen andre skal
 -bytte res.send til console log
+
+opdatere pris for stack
+
+.env for kryp
+npm install dotenv
