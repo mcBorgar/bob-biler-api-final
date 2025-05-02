@@ -1,13 +1,13 @@
-const API = "http://localhost:3000"    // bytte med ip
+const API = "http://192.168.6.109:3000"
 
-//henter navn og pris fra html
+//henter navn og pris fra html kaller det navn og pris til senere
 async function leggTil() {
   const navn = document.getElementById("navn").value
   const pris = document.getElementById("pris").value
 
-//send data med post til API (index.js)
+//send data lagt inn i input med post til API (index.js)
   await fetch(`${API}/leggtil`, {
-    method: "POST",
+    method: "POST",                                  //sende data ikke hente
     headers: { "Content-Type": "application/json" }, //sender json data,  req.body forstår
     body: JSON.stringify({ navn, pris })             //konvertere til json
   })
@@ -22,7 +22,7 @@ async function slett() {
 //sende til api
   await fetch(`${API}/slett`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },   //sender json data,  req.body forstår
+    headers: { "Content-Type": "application/json" },   //sender json data til api
     body: JSON.stringify({ navn })                     //konvertere til json
   })
   hentBiler() //refresh
@@ -31,11 +31,11 @@ async function slett() {
 //bil liste
 async function hentBiler() {
   const res = await fetch(`${API}/biler`)              //spør api om liste av biler
-  const data = await res.json()                        //json-tekst
+  const data = await res.json()                        //omformulere json-tekst
   const ul = document.getElementById("biler")          //slette gammel, gi ny
-  ul.innerHTML = ""
+  ul.innerHTML = ""  //tom
   data.forEach(bil => {
-    ul.innerHTML += `<li>${bil.navn} - ${bil.pris} kr (${bil.antall} stk)</li>`//liste av biler
+    ul.innerHTML += `<li>${bil.navn} - ${bil.pris} kr (${bil.antall} stk)</li>`// biler
   })
 }
 //refresh
