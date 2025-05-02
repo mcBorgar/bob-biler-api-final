@@ -1,4 +1,4 @@
-const API = "http://localhost:3000"
+const API = "http://localhost:3000"    // bytte med ip
 
 //henter navn og pris fra html
 async function leggTil() {
