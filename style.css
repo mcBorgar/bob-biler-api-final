@@ -3,3 +3,16 @@ button {
     padding: 3px;
     border-radius: 10px;
 }
+
+body {
+    background-color: rgb(39, 39, 39);
+}
+
+.boks {
+    background-color: rgb(199, 199, 199);
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    min-height: 200px;
+}

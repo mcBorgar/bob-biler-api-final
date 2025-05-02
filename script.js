@@ -1,27 +1,42 @@
-    const API = "http://localhost:3000"
+const API = "http://localhost:3000"
 
-    async function leggTil() {
-        const navn = document.getElementById("navn").value
-        const pris = document.getElementById("pris").value
-  
-        await fetch(`${API}/leggtil`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ navn, pris })
-        })
-        hentBiler()
-    }
-//https://www.w3schools.com/nodejs/nodejs_mysql.asp 
+//henter navn og pris fra html
+async function leggTil() {
+  const navn = document.getElementById("navn").value
+  const pris = document.getElementById("pris").value
+
+//send data med post til API (index.js)
+  await fetch(`${API}/leggtil`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" }, //sender json data,  req.body forstår
+    body: JSON.stringify({ navn, pris })             //konvertere til json
+  })
+  hentBiler()  //refresh
+}
 
 
-    async function slett() {
-      const navn = document.getElementById("navn").value
+//slett
+async function slett() {
+  const navn = document.getElementById("navn").value   //lese input
 
-    }
+//sende til api
+  await fetch(`${API}/slett`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },   //sender json data,  req.body forstår
+    body: JSON.stringify({ navn })                     //konvertere til json
+  })
+  hentBiler() //refresh
+}
 
-    async function hentBiler() {
-
-    }
-
-    //hent lista
-    hentBiler()
+//bil liste
+async function hentBiler() {
+  const res = await fetch(`${API}/biler`)              //spør api om liste av biler
+  const data = await res.json()                        //json-tekst
+  const ul = document.getElementById("biler")          //slette gammel, gi ny
+  ul.innerHTML = ""
+  data.forEach(bil => {
+    ul.innerHTML += `<li>${bil.navn} - ${bil.pris} kr (${bil.antall} stk)</li>`//liste av biler
+  })
+}
+//refresh
+hentBiler()
