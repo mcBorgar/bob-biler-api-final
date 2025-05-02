@@ -16,29 +16,29 @@ const db = mysql.createConnection({                     //koble til sql database
 //https://www.w3schools.com/nodejs/nodejs_mysql.asp 
 
 
-//gir meelding når den kobler til, hvis ikke gi error
-db.connect(err => {
+
+db.connect(err => {                                     //console log ved feil
     if (err) {
       console.error('error med tilkobling', err);
       return;}
     console.log('kobla til mysql');
 });
+
   
-app.post('/leggtil', (req, res) => {
-    const { navn, pris } = req.body;
+
+app.post('/leggtil', (req, res) => {    //venter på klient /leggtil sender navn og pris json
+    const { navn, pris } = req.body;    
   
-    db.query('SELECT * FROM biler WHERE navn = ?', [navn], (err, result) => {
-      if (err) return res.status(500).send(err);
+    db.query('SELECT * FROM biler WHERE navn = ?', [navn], (err, result) => { //se db innehold, ijection proc ?
+      if (err) return res.status(500).send(err);                              //error
   
       if (result.length > 0) {
         db.query('UPDATE biler SET antall = antall + 1 WHERE navn = ?', [navn], err => {
           if (err) return res.status(500).send(err);
-          res.send('Antall økt!');
         });
       } else {
         db.query('INSERT INTO biler (navn, pris) VALUES (?, ?)', [navn, pris], err => {
           if (err) return res.status(500).send(err);
-          res.send('Bil lagt til!');
         });
       }
     });
