@@ -1,0 +1,21 @@
+sikkerhet:
+x -sikre mot sql injection med <?>
+x -env passord for sql i JS
+-lage backup av filene en gang hver dag, (crontab windows?)
+x -bruker med nødvendige rettigheter: bob 3 select insert update delete 
+x -åpen port 3306
+
+
+
+MAKE DATABASE HERE:
+
+CREATE DATABASE bob_biler;
+
+USE bob_biler;
+
+CREATE TABLE biler (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  navn VARCHAR(100),
+  pris DECIMAL(10,2),
+  antall INT DEFAULT 1
+);
