@@ -1,0 +1,13 @@
+sikkerhet:
+-sikre mot sql injection med <?>
+-kryptere passord for sql i JS
+-lage backup av filene en gang hver dag, (crontab windows?)
+x -bruker med nødvendige rettigheter: bob 3 select insert update delete 
+
+
+JS:
+-funksjon, legge til 1, fjerne 1, vis liste
+-fikse at legg till går for navn og pris, så den ikek stacker feil
+-
+
+script.js localhost, ip hvis noen andre skal
