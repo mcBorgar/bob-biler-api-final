@@ -14,7 +14,7 @@ const db = mysql.createConnection({
 });
 //https://www.w3schools.com/nodejs/nodejs_mysql.asp 
 
-//aba
+//test
 //gir meelding når den kobler til, hvis ikke gi error
 db.connect(err => {
     if (err) {
